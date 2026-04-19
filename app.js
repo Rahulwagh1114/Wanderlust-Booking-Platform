@@ -4,7 +4,9 @@ const port=8080;
 const mongoose=require("mongoose");
 const Listing=require("./models/listing.js");
 const path=require('path');
+const ejsMate=require("ejs-mate");
 
+app.engine("ejs",ejsMate);
 
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
@@ -26,7 +28,6 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'public')));     
-
 app.listen(port,()=>{
     console.log("port is listing");
 })
@@ -39,7 +40,8 @@ app.get("/",(req,res)=>{
 app.get("/listings",async(req,res)=>{
 const allListing=await Listing.find({});
 res.render("listing/index.ejs",{allListing});
-})
+});
+
 //New route
 app.get("/listings/new",(req,res)=>{
     res.render("listing/new.ejs");
@@ -82,16 +84,3 @@ app.delete("/listings/:id",async(req,res)=>{
     res.redirect("/listings");
 })
 
-// app.get("/testListing",async(req,res)=>{
-//     let sampleListing=new Listing({
-//         title:"My new villa",
-//         description:"By beatch",
-//         price:1200,
-//         location:"Calangute, Goa",
-//         country:"India"
-//     })
-
-//     await sampleListing.save();
-//     console.log("Sample was saved");
-//     res.send("Success");
-// })
