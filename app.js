@@ -11,9 +11,13 @@ const {listingSchema,reviewSchema}=require("./schema.js");
 const Review=require("./models/review.js");
 const session=require("express-session");
 const flash=require("connect-flash");
+const passport=require("passport");
+const LocalStrategy = require("passport-local");
+const User=require("./models/user.js");
 
-const listings=require("./routes/listing.js");
-const reviews=require("./routes/review.js");
+const listingRouter=require("./routes/listing.js");
+const reviewRouter=require("./routes/review.js");
+const userRouter=require("./routes/user.js");
 
 app.engine("ejs",ejsMate);
 
@@ -45,6 +49,27 @@ app.use((req,res,next)=>{
     next();
 })
 
+
+//Passport for Set password "Ham session ke baad use kar rahe because ek hi session par user ko login na karna pade bar bar (a browser tabs)"
+
+app.use(passport.initialize());  //passport initialize 
+app.use(passport.session());     //session me use ek hi baar login kare is liye
+passport.use(new LocalStrategy(User.authenticate())); //user Local stratgy through authenticate ho 
+
+passport.serializeUser(User.serializeUser());    //for both lines (use static serialize and deserialize of model for passport session support)
+passport.deserializeUser(User.deserializeUser());  //serialized means stored info in session and deserlized means remove info from session
+ 
+// //demo user
+// app.get("/demouser",async(req,res)=>{
+//     let fakeUser=new User({
+//         email:"abc12@getMaxListeners.com",
+//         username:"delta-student"
+//     })
+
+// let registeredUser=await User.register(fakeUser,"helloworld");
+// res.send(registeredUser);
+// });
+
 //dataBase connection
 
 const MONGO_URL="mongodb://localhost:27017/wanderlust";
@@ -69,8 +94,9 @@ app.listen(port,()=>{
 })
 
 //Routes connections
-app.use("/listings",listings);
-app.use("/listings/:id/reviews",reviews)
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter)
+app.use("/",userRouter);
 
 app.get("/",(req,res)=>{
     res.send("Root path");
