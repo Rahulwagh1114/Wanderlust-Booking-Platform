@@ -9,11 +9,8 @@ const listingSchema=new Schema({
     },
     description:String,
    image:{
+    url:String,
     filename:String,
-    url:{
-        type:String,
-        default:"https://images.unsplash.com/photo-1775922428717-fe41d4ce5751"
-    }
 },
     price:Number,
     location:String,
@@ -23,7 +20,26 @@ const listingSchema=new Schema({
                 type:Schema.Types.ObjectId,
                 ref:"Review"
         }
-    ]
+    ],
+    owner:{
+        type:Schema.Types.ObjectId,
+        ref :"User"
+    },geometry: {
+  type: {
+    type: String,
+    enum: ["Point"],
+    required: true,
+  },
+  coordinates: {
+    type: [Number],
+    required: true,
+  },
+},category:{
+  type:String,
+  enum:["trending","rooms","iconic cities","mountains","castle","amazing pools",
+    "camping","farms","arctic","domes","boats"]
+}
+
 });
 
 listingSchema.post("findOneAndDelete",async(listing)=>{
