@@ -20,6 +20,8 @@ const passport=require("passport");
 const LocalStrategy = require("passport-local");
 const User=require("./models/user.js");
 
+
+
 //dataBase connection
 
 // const MONGO_URL="mongodb://localhost:27017/wanderlust";
@@ -109,6 +111,10 @@ app.use(express.static(path.join(__dirname,'public')));
 app.listen(port,()=>{
     console.log("port is listing");
 })
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 //Routes connections
 app.use("/listings/:id/reviews",reviewRouter)

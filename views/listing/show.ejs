@@ -6,7 +6,11 @@
          <h3><%= listing.title %></h3>
       </div>
        <div class="card show-card col-6 offset-3 listing-card">
-        <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing-image">
+       <img src="<%= listing.image.url.replace('/upload','/upload/f_auto,q_auto,w_400') %>"
+          class="card-img-top show-img"
+          alt="listing-image"
+         loading="lazy"
+         />
         <div class="card-body">
           <p class="card-text">
               <p class="card-text">Owned By: <i><%=listing.owner.username %></i></p>
