@@ -4,11 +4,11 @@
     background-color:#fe424d ;
     color: white;
      border-radius: 7rem;
-     padding: 0 2rem 0 2rem;
+     padding: 0 1.8rem 0 1.8rem;
   }
   .serch-inp {
      border-radius: 7rem;
-     padding: 0.5rem 2rem 0.5rem 2rem;
+     padding: 0.4rem 1.8rem 0.4rem 1.8rem;
   }
 
    .btn-search:hover{
@@ -21,37 +21,132 @@
     margin-right: 0.3rem;
    
   }
+  .serch-inp{
+    min-width: 300px;
+}
+
+@media(max-width:992px){
+    .serch-inp{
+        min-width: 170px;
+    }
+
+    .mx-auto{
+        margin: 1rem 0 !important;
+    }
+
+    .btn-search{
+        padding: 0.5rem 1rem;
+    }
+}
+
+.navbar-toggler{
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+}
+/* Mobile Navbar Fix */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background-color: white;
+    /* padding: 1rem;
+    margin-top: 1rem; */
+    border-top: 1px solid #ddd;
+    width: 100%;
+    z-index: 999;
+     /* line-height: 0.5rem; */
+  }
+
+  .navbar-nav {
+    align-items: flex-start !important;
+    gap: 0.5rem;
+    /* line-height: 0.5rem; */
+    padding-bottom: 0.6rem;
+  }
+
+  .search-inp {
+    width: 80% !important;
+    /* margin-bottom: 0.8rem; */
+  }
+
+  .search-btn {
+    width: 80%;
+    /* margin-bottom: 0.8rem; */
+  }
+}
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.5rem !important;
+}
+
+.site-name {
+  color: #fe424d;
+  font-weight: bold;
+  white-space: nowrap;
+
+}
+.btn-log{
+   padding: 0.3rem 0.8rem 0.3rem 0.8rem !important;
+   text-decoration: none;
+   border-radius: 1rem;
+   text-align: center;
+   font-size: 14px;
+   font-weight: bold;
+   background-color:#ebebeb;
+  border: none;
+  }
+
+  .btn-log:hover{
+    background-color: white;
+  }
+
+  .nav-ex-cre-btn{
+padding: 0.3rem 0.8rem 0.3rem 0.8rem !important;
+   text-decoration: none;
+   border-radius: 1rem;
+   text-align: center;
+    border: none;
+     background-color:#fafafa;
+  }
+.nav-ex-cre-btn:hover{
+  background-color:#ededed; ;
+}
+
 </style>
 
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-lg border-bottom sticky-top bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i> <span class="site-name">Wanderlust</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
+        <a class="nav-link" href="/listings"><button class="nav-ex-cre-btn">Explore</button></a>
       </div>
 
-          <div class="navbar-nav m-auto">
-             <form action="/listings" method="GET" class="d-flex" role="search">
-             <input class="form-control serch-inp me-2" name="search" type="search" placeholder="Search Destination" aria-label="Search"/>
-            <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-            </form>
-          </div>
+          <div class="mx-auto">
+  <form action="/listings" method="GET" class="d-flex" role="search">
+    <input class="form-control serch-inp me-2" name="search" type="search" placeholder="Search Destination">
+    <button class="btn btn-search" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>Search
+    </button>
+  </form>
+</div>
 
       <div class="navbar-nav ms-auto">
-      <a class="nav-link" href="/listings/new">Airbnb your home</a>
+      <a class="nav-link" href="/listings/new"> <button class="nav-ex-cre-btn">Become a Host</button></a>
     <% if(!currUser){ %>
-        <a class="nav-link" href="/signup"><b>SignUp</b></a>
-        <a class="nav-link" href="/login"><b>LogIn</b></a>
+        <a class="nav-link " href="/signup"><button class="btn-log">SignUp</button></a>
+        <a class="nav-link" href="/login"><button class="btn-log">LogIn</button></a>
     <% } else { %>
-        <a class="nav-link" href="/logout"><b>LogOut</b></a>
+        <a class="nav-link" href="/logout"><button class="btn-log">LogOut</button></a>
     <% } %>
 
      </div>
     </div>
   </div>
 </nav>
+
+

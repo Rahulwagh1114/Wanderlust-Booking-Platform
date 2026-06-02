@@ -12,10 +12,10 @@
      .filter{
       text-decoration: none;
       color:black;
-      font-size: 18px;
+      font-size: 16px;
       text-align: center;
       margin-top: 1rem;
-      margin-right:2.2rem ;
+      margin-right:1.5rem ;
       opacity: 0.7;
      }
 
@@ -35,12 +35,46 @@
      .tax-toggle{
       border: 2px solid black;
       border-radius: 1rem;
-      height: 3rem;
+      height: 2.5rem;
       padding: 1rem;
-      margin-left: 3rem;
+      margin-left: 1rem;
       display: flex;
       align-items: center;
      }
+     #filters::-webkit-scrollbar{
+    display: none;
+}
+
+     @media (max-width: 1000px){
+     
+    .tax-toggle{
+       display: none;
+    }
+
+    .form-check-label{
+        font-size: 0.9rem;
+    }
+     #filters {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    white-space: nowrap;
+  }
+
+  .filter {
+    flex: 0 0 auto;
+  }
+
+  #filters::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+
+
   </style>
     
      <div id="filters" >
